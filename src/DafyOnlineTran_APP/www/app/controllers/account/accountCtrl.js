@@ -159,7 +159,82 @@ define(['app'], function(app) {
                     });
                 }
             };
-        }]);
+        }])
+          //我的课程
+        .controller('myLearnListCtrl', ['$rootScope', '$scope', '$state', '$stateParams', '$ionicLoading', '$timeout','$window', 'LearnService', function($rootScope, $scope, $state, $stateParams, $ionicLoading, $timeout,$window,LearnService) {
+            var id = $stateParams.id;
+            $scope.parameter = {
+                id:parseInt(id),
+                userId: parseInt($rootScope.userId),
+                page: 1,
+                pageSize: 8, 
+            };
+            $scope.goBack = function() { //返回
+                $window.location = '#/app/account';
+            }
+            $scope.learnList = [];
+            $scope.more = true;
+            $scope.rowsCount = 0;
+
+            $scope.openUrl = function(id) {
+                $state.go('app.learnDetails', {'typeId':$scope.parameter.id,'id': id});
+            }
+
+            function getLearnList() {
+                $ionicLoading.show();
+                LearnService.getLearnList($scope.parameter, function(data) {
+                    if (data.list != null) {
+                        if (data.total <= $scope.parameter.pageSize)
+                            $scope.more = false;
+                        else if (parseInt($scope.learnList.length) * 2 >= data.total) {
+                            $scope.more = false;
+                        } else {
+                            $scope.more = true;
+                        }
+
+
+                        if (data.list.length % 2 == 0) {
+                            $scope.rowsCount = parseInt(data.list.length / 2);
+                        } else {
+                            $scope.rowsCount = parseInt((data.list.length / 2)) + 1;
+                        }
+                        var key = 0;
+                        for (var i = 0; i < $scope.rowsCount; i++) {
+                            var learnModel = { key: i, items: [] };
+
+                            for (var j = 0; j < 2; j++) {
+                                if (data.list[key] != undefined) {
+                                    learnModel.items.push(data.list[key]);
+                                    key += 1;
+                                }
+                            }
+                            $scope.learnList.push(learnModel);
+                        }
+                    }
+                    //console.log($scope.learnList);
+                    $scope.$broadcast('scroll.infiniteScrollComplete');
+                    $scope.parameter.page++;
+                    $ionicLoading.hide();
+                });
+            };
+            //加载更多
+            $scope.loadMore = function() {
+                try {
+                    getLearnList();
+                } catch (ex) {
+                    $scope.more = false;
+                }
+            };
+            // // 下拉刷新
+            $scope.doRefresh = function() {
+                $scope.parameter.page = 1;
+                $scope.learnList = [];
+                getLearnList();
+                $scope.$broadcast('scroll.refreshComplete');
+            };
+
+        }])        
+        
         //我的培训列表
         app.controller('myTrainListCtrl', ['$rootScope', '$scope', '$state', '$stateParams', '$ionicLoading', 'TrainService', function($rootScope, $scope, $state, $stateParams, $ionicLoading, TrainService) {
             var state = $stateParams.state;

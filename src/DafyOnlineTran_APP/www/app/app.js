@@ -458,7 +458,7 @@ define([
 			views: {
 				'tab-myLearn-required': {
 					templateUrl: 'templates/account/myLearn-required.html',
-					controller: 'LearnListCtrl',
+					controller: 'myLearnListCtrl',
 			        css: 'css/learn/learn.css',					
 				}
 			},
@@ -466,11 +466,11 @@ define([
 				loadController: ['$q', '$stateParams',
 					function($q, $stateParams) {
 
-						var learnCtrl = "app/controllers/learn/learnCtrl.js";
+						var loadAccountCtrl = "app/controllers/account/accountCtrl.js";
 						var learnService = "app/services/learn/learnService.js";
 						var deferred = $q.defer();
 
-						require([learnCtrl, learnService], function() {
+						require([loadAccountCtrl, learnService], function() {
 							deferred.resolve();
 						});
 						return deferred.promise;
@@ -484,7 +484,7 @@ define([
 			views: {
 				'tab-myLearn-selective': {
 					templateUrl: 'templates/account/myLearn-selective.html',
-					controller: 'LearnListCtrl',
+					controller: 'myLearnListCtrl',
 			        css: 'css/learn/learn.css',					
 				}
 			},
@@ -492,11 +492,11 @@ define([
 				loadController: ['$q', '$stateParams',
 					function($q, $stateParams) {
 
-						var learnCtrl = "app/controllers/learn/learnCtrl.js";
+						var loadAccountCtrl = "app/controllers/account/accountCtrl.js";
 						var learnService = "app/services/learn/learnService.js";
 						var deferred = $q.defer();
 
-						require([learnCtrl, learnService], function() {
+						require([loadAccountCtrl, learnService], function() {
 							deferred.resolve();
 						});
 						return deferred.promise;
@@ -510,7 +510,7 @@ define([
 			views: {
 				'tab-myLearn-subject': {
 					templateUrl: 'templates/account/myLearn-subject.html',
-					controller: 'LearnListCtrl',
+					controller: 'myLearnListCtrl',
 			        css: 'css/learn/learn.css',					
 				}
 			},
@@ -518,11 +518,11 @@ define([
 				loadController: ['$q', '$stateParams',
 					function($q, $stateParams) {
 
-						var learnCtrl = "app/controllers/learn/learnCtrl.js";
+						var loadAccountCtrl = "app/controllers/account/accountCtrl.js";
 						var learnService = "app/services/learn/learnService.js";
 						var deferred = $q.defer();
 
-						require([learnCtrl, learnService], function() {
+						require([loadAccountCtrl, learnService], function() {
 							deferred.resolve();
 						});
 						return deferred.promise;

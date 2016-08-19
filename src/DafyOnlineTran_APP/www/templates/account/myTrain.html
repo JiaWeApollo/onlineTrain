@@ -1,4 +1,4 @@
-<ion-view view-title="我的培训" hide-tabs="true">
+<ion-view view-title="我的培训" hide-tabs="true" hide-back-button="false">
 	<ion-content scroll="true" lazy-scroll>
 		<ion-refresher on-refresh="doRefresh()" pulling-text="下拉刷新" refreshing-text="加载中..."></ion-refresher>
 		<div class="padding item not-train" bindonce ng-repeat="item in trainList" ng-click="openUrl(item.id)">
