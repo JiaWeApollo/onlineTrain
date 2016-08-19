@@ -1,0 +1,56 @@
+{
+    "message":"查看考试结果成功!",
+    "state":1,
+    "list": [{
+            "type": 1,
+            "subjects": [{
+                "id":1,
+                "subjectTitle": "1. 销售人员将顾客分为终端消费者和分销商，这种划分顾客类型。",
+                "checked":"D",
+                "correctValue":"C",
+                "options": [{ "text": "A、顾客性质划分1", "value": "A"},
+                    { "text": "B、交易时间划分2", "value": "B"},
+                    { "text": "C、重要程度划分3", "value": "C" },
+                    { "text": "D、销售对象划分4", "value": "D" }
+                ]
+            }, {
+                "id":2,
+                "subjectTitle": "2. 企业销售人员在工作中承受巨大压力时，变压力为动力，这种减轻工作压力的方法。",
+                "checked":"B",
+                "correctValue":"B",
+                "options": [{ "text": "A、确定适当的目标", "value": "A"},
+                    { "text": "B、宣泄", "value": "B" },
+                    { "text": "C、培养抗压能力", "value": "C" },
+                    { "text": "D、咨询", "value": "D" }
+                ]
+            }]
+        },
+        {
+            "type": 2,
+            "subjects": [{
+                "id":3,
+                "subjectTitle": "1. 企业销售人员在工作中承受巨大压力时，变压力为动力，这种减轻工作压力的方法是3",
+                "correctValue":"AB",
+                "options": [{ "text": "A、确定适当的目标", "value": "A","checked":true},
+                    { "text": "B、宣泄", "value": "B","checked":true},
+                    { "text": "C、培养抗压能力", "value": "C" ,"checked":false},
+                    { "text": "D、咨询", "value": "D" ,"checked":false}
+                ]
+            },{
+                "id":4,
+                "subjectTitle": "2. 企业销售人员在工作中承受巨大压力时，变压力为动力，这种减轻工作压力的方法是3",
+                "correctValue":"ABCD",
+                "options": [{ "text": "A、确定适当的目标", "value": "A","checked":true},
+                    { "text": "B、宣泄", "value": "B","checked":false},
+                    { "text": "C、培养抗压能力", "value": "C","checked":true},
+                    { "text": "D、咨询", "value": "D","checked":false}
+                ]
+            }]
+        }, {
+            "type": 3,
+            "subjects": [{"id":5,"subjectTitle": "1. 简述企业目标市场覆盖模式的种类及内容。","content":"11111111","correctValue":"市场集中化。只生产一类产品，供应单一的顾客群，进行集中营销；⑵选择性专业化。企业选取若干个具有良好赢利潜力和结构吸引力，且符合企业的资源的细分的市场作为目标市场，并为他们分别生产和供应不同的产品；⑶产品专业化。企业集中生产一种产品，并向各类顾客销售这种产品；⑷市场专业化。企业专为某一个顾客群体生产和供应所需的各种产品；⑸市场的全面覆盖。企业生产多种产品去满足各种顾客群体的需要。"},
+                {"id":6,"subjectTitle": "2. 简述企业目标市场覆盖模式的种类及内容。","content":"222222","correctValue":"市场集中化。只生产一类产品，供应单一的顾客群，进行集中营销；⑵选择性专业化。企业选取若干个具有良好赢利潜力和结构吸引力，且符合企业的资源的细分的市场作为目标市场，并为他们分别生产和供应不同的产品；⑶产品专业化。企业集中生产一种产品，并向各类顾客销售这种产品；⑷市场专业化。企业专为某一个顾客群体生产和供应所需的各种产品；152441。"}
+            ]
+        }
+    ]
+}

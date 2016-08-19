@@ -1,0 +1,32 @@
+<ion-view view-title="登录" hide-nav-bar="true">
+    <ion-nav-bar class="bar bar-clear"> </ion-nav-bar>
+    <ion-content overflow-scroll="true" style="overflow: hidden" >
+        <div class="list list-inset">
+            <div class="logo-box">
+                <img src="./img/account/login-logo.png" alt="logo">
+            </div>
+            <div class="list padding" id="loginc">
+                <div class="item-input">
+                    <span class="input-label fs14">用户名</span>
+                    <input type="number" placeholder="请输入您的销售ID" ng-model="user.userId">
+                </div>
+                <div class="item-input">
+                    <span class="input-label fs14">密&nbsp;&nbsp;&nbsp;码</span>
+                    <input type="password" placeholder="请输入您的密码" ng-model="user.password">
+                </div>
+                <div class="">
+                    <button class="button button-block button-default" ng-click="login(user)">
+                        登录
+                    </button>
+                    <p class="text-center">
+                        <i ng-bind="msg"></i>
+                    </p>
+                </div>
+                <div class="text-center"><a href="#/register?state=c" class="title zc">忘记密码？</a></div>
+            </div>
+        </div>
+    </ion-content>
+    <ion-footer-bar align-title="center" class="zc-bar">
+        <a href="#/register?state=r" class="title zc">没有账号？立即注册</a>
+    </ion-footer-bar>
+</ion-view>

@@ -1,0 +1,15 @@
+<ion-view view-title="需求调研" hide-back-button="false" hide-tabs="true">
+    <ion-content class="survey-content" overflow-scroll="false">
+        <div class="survey">
+                <ion-list class="list-borderless ub-f1">
+                    <ion-item class=" item-button-right" bindonce ng-repeat="item in homeList[2].survey">
+                        <h4 class="time" bo-text="item.datetime">2016.8.6</h4>
+                        <h3 bo-text="item.title">入职培训需求调研</h3>
+                        <p bo-text="item.desc">您对入职培训有什么需求</p>
+                        <!--<a class="button">已完成</a>-->  <!--已完成的样式-->
+                        <a class="button assertive-bg">未完成</a>
+                    </ion-item>
+                </ion-list>
+        </div>
+    </ion-content>
+</ion-view>

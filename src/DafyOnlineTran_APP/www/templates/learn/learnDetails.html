@@ -1,0 +1,21 @@
+<ion-view view-title="课程详情" hide-nav-bar="true" hide-tabs="false">
+    <ion-content bindonce ng-model="learnModel">
+        <div class=" ub ub-ac ub-pc ub-img1 vedio-box" ng-style="{'background-image': 'url(' + learnModel.imgUrl + ')'}">
+            <a class="icon ion-ios-arrow-left" ng-click="goBack()"></a>
+            <img src="./img/learn/play.png" ng-click="play(learnModel.playUrl)"/>
+        </div>
+        <div class="vedio-info">
+            <h5>{{learnModel.name}}</h5>
+            <div class="ub fs12">
+                <div class="vm clickNum"><img src="./img/learn/click.png" /><span>{{learnModel.hits}}</span>点击量</div>
+                <div class="vm learnNum"><img src="./img/learn/viewer.png" /><span>{{learnModel.number}}</span>人已学</div>
+                <div class="vm integralNum"><img src="./img/learn/integral.png" /><span>{{learnModel.points}}</span>积分</div>
+            </div>
+        </div>
+        <div class="line"></div>
+        <div class="learn-info">
+            <div class="title">课程简介</div>
+            <p>{{learnModel.desc}}</p>
+        </div>
+    </ion-content>
+</ion-view>

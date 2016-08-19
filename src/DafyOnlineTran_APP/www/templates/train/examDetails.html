@@ -1,0 +1,37 @@
+<ion-view view-title="培训考试详情" hide-back-button="false" hide-tabs="false">
+    <ion-content class="padding has-subfooter">
+        <div bindonce ng-repeat="item in questionsList">
+            <div bo-switch="item.type">
+                <h4 bo-switch-when="1">选择题</h4>
+                <div class="choice-item" bindonce ng-repeat="c in item.subjects" ng-if="item.type==1">
+                    <h4 bo-bind="c.subjectTitle"></h4>
+                    <span style="color: red;">(正确答案：{{c.correctValue}})</span>
+                    <ion-list class="list-borderless" bindonce ng-repeat="r in c.options">
+                        <ion-radio ng-model="c.checked" ng-value="r.value" name="{{c.id}}">{{r.text}}</ion-radio>
+                    </ion-list>
+                </div>
+                <h4 bo-switch-when="2">多选题</h4>
+                <div class="choice-item" bindonce ng-repeat="c in item.subjects" ng-if="item.type==2">
+                    <h4 bo-bind="c.subjectTitle"></h4>
+                    <span style="color: red;">(正确答案：{{c.correctValue}})</span>
+                    <ion-list class="list-borderless" bindonce ng-repeat="r in c.options">
+                        <ion-checkbox ng-model="r.checked" ng-value="r.value">{{r.text}}</ion-checkbox>
+                    </ion-list>
+                </div>
+                <h4 bo-switch-when="3">简答题</h4>
+                <div class="short-item" bindonce ng-repeat="c in item.subjects" ng-if="item.type==3">
+                    <h4 bo-bind="c.subjectTitle"></h4>
+                    <label class="col">
+                        <p class="short-anwer" bo-bind="c.content">
+                            
+                        </p>
+                    </label>
+                    <h4 class="ft">最佳答案</h4>
+                    <p class="short-anwer" bo-bind="c.correctValue">
+    
+                    </p>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,11 @@
+/*未培训列表*/
+.sub-ft h3{color:#666!important;}
+.trainInfo.fs12 h3{font-size: 12px!important;}
+.not-train{border-width: 0;border-bottom: 8px solid #EFEFEF;}
+.btn-group .button.button-default{border-radius: 1.5em;background-color: #ffffff;border: 1px solid #00ADB2;color:#00ADB2 ;}
+.estimate .list .item{padding: 0 0 10px 0;}
+/*培训考核*/
+.sumbit{height:60px;}
+.has-subfooter{bottom: 88px!important;}
+.border{border:1px solid #eaeaea;}
+.short-anwer{letter-spacing: 1px;}

@@ -1,0 +1,50 @@
+{
+    "list": [{
+            "type": 1,
+            "subjects": [{
+                "id":1,
+                "subjectTitle": "1. 销售人员将顾客分为终端消费者和分销商，这种划分顾客类型。",
+                "checked":"",
+                "options": [{ "text": "A、顾客性质划分1", "value": "A"},
+                    { "text": "B、交易时间划分2", "value": "B"},
+                    { "text": "C、重要程度划分3", "value": "C" },
+                    { "text": "D、销售对象划分4", "value": "D" }
+                ]
+            }, {
+                "id":2,
+                "subjectTitle": "2. 企业销售人员在工作中承受巨大压力时，变压力为动力，这种减轻工作压力的方法。",
+                "checked":"",
+                "options": [{ "text": "A、确定适当的目标", "value": "A"},
+                    { "text": "B、宣泄", "value": "B" },
+                    { "text": "C、培养抗压能力", "value": "C" },
+                    { "text": "D、咨询", "value": "D" }
+                ]
+            }]
+        },
+        {
+            "type": 2,
+            "subjects": [{
+                "id":3,
+                "subjectTitle": "1. 企业销售人员在工作中承受巨大压力时，变压力为动力，这种减轻工作压力的方法是3",
+                "options": [{ "text": "A、确定适当的目标", "value": "A","checked":""},
+                    { "text": "B、宣泄", "value": "B","checked":""},
+                    { "text": "C、培养抗压能力", "value": "C" ,"checked":""},
+                    { "text": "D、咨询", "value": "D" ,"checked":""}
+                ]
+            },{
+                "id":4,
+                "subjectTitle": "2. 企业销售人员在工作中承受巨大压力时，变压力为动力，这种减轻工作压力的方法是3",
+                "options": [{ "text": "A、确定适当的目标", "value": "A","checked":""},
+                    { "text": "B、宣泄", "value": "B","checked":""},
+                    { "text": "C、培养抗压能力", "value": "C","checked":""},
+                    { "text": "D、咨询", "value": "D","checked":""}
+                ]
+            }]
+        }, {
+            "type": 3,
+            "subjects": [{"id":5,"subjectTitle": "1. 简述企业目标市场覆盖模式的种类及内容。","content":""},
+                {"id":6,"subjectTitle": "2. 简述企业目标市场覆盖模式的种类及内容。","content":""}
+            ]
+        }
+    ]
+}

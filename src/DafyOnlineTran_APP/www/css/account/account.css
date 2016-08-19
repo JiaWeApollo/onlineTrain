@@ -1,0 +1,34 @@
+/*login.html*/
+#loginc {
+	padding: 0 4.5em;
+}
+#loginc button.button-default{
+	border-radius: 1.5em;
+    margin-top: 1em!important;
+}
+/*logo*/
+.logo-box{margin: 4.5em auto;text-align: center;}
+.zc{
+	font-size: 1em!important;
+	color:#605E5E;
+}
+/*默认按钮*/
+loginc .button.button-default{
+    margin-top: 2em!important;
+}
+ion-footer-bar.zc-bar{width: 80%;left: 10%;}
+#loginc .item-input{padding: 6px 0 5px 0px;border-bottom: 1px solid #eaeaea;}
+
+/*register.html*/
+#register-c{padding: 1em 1.5em}
+#register-c .item-input{padding: 6px 0 5px 0px;border-bottom: 1px solid #eaeaea;}
+#verifyCode {border-right: 1px solid #00ADB2;height: 25px;}
+/*个人中心*/
+.account-box{background-image: url(./../../img/account/head-bg.png);height: 11rem;}
+.head-img{width:4.2rem;}
+.padding45-top{padding-top: 45px;}
+.padding30-top{padding-top: 30px;}
+/*个人设置*/
+.setting-list .item{margin-top:10px ;}
+.logo-box{margin: 1.5rem auto;}
+.logo-box+h4{margin-top: 0px;}

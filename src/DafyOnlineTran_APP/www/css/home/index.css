@@ -1,0 +1,19 @@
+ion-content{background: #EFEFEF;}
+ion-content.survey-content{background: #FFFFFF;}
+ion-slide .slide{position:relative;}
+.slide-info{position:absolute;width:100%;height: 35%;bottom: 3.5%;background: #000000;opacity: .4;color: #ffffff!important;}
+.slide-info>.col{padding:0 5px;font-size: 12px;}
+.slide-info>.col .position{opacity: .8;}
+.train-img,.learn-img{width: 100%;}
+.container.train{background: #ffffff;margin-top:0em;}
+.container{background: #ffffff;margin-top:0.8em;}
+.title-box .arrow{padding: 5px 5px 0 0;}
+.title-box .line{border-right: 4px solid #00ADB2;margin-right: 6px}
+.train-title{text-align: center;font-size: 0.6rem;}
+.train-title *{vertical-align: middle;}
+.train-title i{font-size: 14px;}
+/*调查*/
+.survey .time{width: 6em;color:#00ADB2;border: 1px solid #00ADB2;border-radius:1em;text-align: center;line-height: 16px;margin-bottom:.5em;}
+.survey a.button{margin-top: 2.4em;background: #00ADB2;color: #FFFFFF;border-radius: 1em;font-size:.9em;min-height: 30px;line-height: 27px;}
+.survey a.button.assertive-bg{background-color: #ef473a;}
+.survey .item p{font-size: 12px;}

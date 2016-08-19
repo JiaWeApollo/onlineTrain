@@ -1,0 +1,13 @@
+<ion-view view-title="课程分类" hide-tabs="false">
+    <ion-content scroll="true" lazy-scroll>
+		<ion-list class="list-borderless sort-list">
+		    <ion-item class="item-thumbnail-left item-button-right" bindonce ng-repeat="item in learnTypeList" ng-click="openUrl(item.id)">
+			    <img lazy-src="{{item.imgUrl}}">
+				<h2 bo-text="item.name">入职培训</h2>
+				<p bo-text="item.desc">对新入职的员工进行培训</p>
+				<div class="clickNum vm fs12"><img src="./img/learn/viewer.png"/><span>{{item.number}}人已学</span></div>
+				<a href="#" class="button button-clear icon ion-ios-arrow-right"></a>
+		    </ion-item> 
+		</ion-list>
+    </ion-content>
+</ion-view>

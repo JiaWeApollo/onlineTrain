@@ -1,0 +1,7 @@
+{
+    "list": [
+        { "id": 1, "name": "入职培训1", "desc": "对新入职的员工进行培训", "imgUrl": "./img/home/learn-img1.png","number":20},
+        { "id": 2, "name": "岗位技能2", "desc": "对员工的岗位技能进行培训", "imgUrl": "./img/home/learn-img1.png","number":200},
+        { "id": 3, "name": "通用技能3", "desc": "对员工的通用技能进行培训", "imgUrl": "./img/home/learn-img1.png","number":300}
+    ]
+}

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>APP_KEY</key>
+	<string>873b6cd05b6eb62fd7dcc4bc</string>
+	<key>CHANNEL</key>
+	<string>在线培训</string>
+	<key>APS_FOR_PRODUCTION</key>
+	<string>0</string>
+	<key>IsProduction</key>
+	<false/>
+	<key>IsIDFA</key>
+	<false/>
+</dict>
+</plist>

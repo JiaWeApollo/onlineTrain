@@ -1,0 +1,11 @@
+{
+    "list": [{
+        	"code": "train", "train": [{"id":1,"title":"1七月份入职培训","imgUrl":"./img/home/train-img1.png"},
+        	{"id":2,"title":"2七月份入职培训","imgUrl":"./img/home/train-img2.png"},
+        	{"id":3,"title":"3七月份入职培训","imgUrl":"./img/home/train-img3.png"}]},
+        	{"code": "learn", "learn": [{"id":1,"title":"顾客类型及11","imgUrl":"./img/home/learn-img1.png"},
+        	{"id":2,"title":"顾客类型及22","imgUrl":"./img/home/learn-img1.png"}]},
+        	{"code": "survey", "survey": [{"id":1,"title":"入职培训需求调研","desc":"您对入职培训有什么需求","datetime":"2016.08.06","state":0},
+        	{"id":2,"title":"销售技巧培训需求调研","desc":"您对销售技巧培训有什么需求","datetime":"2016.08.07","state":0}]}
+    ]
+}

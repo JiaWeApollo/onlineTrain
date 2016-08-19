@@ -1,0 +1,31 @@
+/*分类列表*/
+.sort-list .list{padding-top:8px;}
+.sort-list p{margin-top:8px;margin-bottom: 8px;}
+.sort-list .item-button-right > .button{margin-top: 16px;}
+/*课程列表*/
+.integral{
+font-family: .PingFangSC-Regular;
+font-size: 10px;
+color: #E74128;
+letter-spacing: .5px;	
+}
+/*课程详情*/
+.vedio-box{
+background-image: url(./../../img/learn/video-img1.png);
+height:10.6rem;
+}
+.vedio-box .icon{position: absolute;left:.8rem;top:.8rem;font-size: 2rem;color: #FFFFFF}
+.vedio-info{padding: 0 10px 15px;}
+.clickNum{padding-right:5px;color: #ABABAB;}
+.learnNum{padding:0 5px;color: #ABABAB;}  /*公用样式*/
+.integralNum{padding:0 5px;color: #E74128;}
+.learn-info{padding: 0 10px;}
+.learn-info>.title{border-bottom: 1px solid #eaeaea;padding:10px 0;font-family: .PingFangSC-Regular;color: #100F0F;}
+.learn-info>p{
+	padding: 10px 0;
+	font-family: .PingFangSC-Regular;
+	font-size: 11px;
+	color: #6E6D6E;
+	letter-spacing: .1px;
+	line-height: 16px;
+}

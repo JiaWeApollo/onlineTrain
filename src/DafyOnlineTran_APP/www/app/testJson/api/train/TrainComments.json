@@ -1,0 +1,7 @@
+{
+    "total": 2,
+    "list": [
+        { "id": 1, "avatar": "./img/train/head.png", "name": "田小田", "content": "非常棒！理论和实际结合得很好，也有案例。真心赞一个~~~", "datetime": "2010-8-28 09:52", "progress":"98" },
+        { "id": 2, "avatar": "./img/train/head.png", "name": "田小田", "content": "2非常棒！理论和实际结合得很好，也有案例。真心赞一个~~~", "datetime": "2010-8-28 09:52", "progress":"100" }
+    ]
+}

@@ -1,0 +1,19 @@
+<ion-view view-title="课程列表" hide-tabs="false" hide-back-button="true">
+    <ion-nav-buttons side="left">
+        <button class="button bg-default" ng-click="goBack()"><i class="icon ion-ios-arrow-left light"></i></button>
+    </ion-nav-buttons>
+    <ion-content scroll="true" lazy-scroll>
+        <ion-refresher on-refresh="doRefresh()" pulling-text="下拉刷新" refreshing-text="加载中..."></ion-refresher>
+        <div class="row list-borderless" bindonce ng-repeat="r in learnList track by $index">
+            <div class="col col-50 item padding" ng-repeat="item in r.items" ng-click="openUrl(item.id)">
+                <img width="100%" lazy-src="{{item.imgUrl}}" />
+                <h5 class="" ng-bind="item.name"></h5>
+                <div class="ub fs12">
+                    <div class="ub-f1 vm clickNum"><img src="./img/learn/viewer.png" /><span bo-text="item.number"></span>人已学</div>
+                    <div class="integral vm"><img src="./img/learn/integral.png" /><span bo-text="item.points"></span>积分</div>
+                </div>
+            </div>
+        </div>
+        <ion-infinite-scroll ng-if="more" icon="ion-loading-c" on-infinite="loadMore()" distance="10%"></ion-infinite-scroll>
+    </ion-content>
+</ion-view>

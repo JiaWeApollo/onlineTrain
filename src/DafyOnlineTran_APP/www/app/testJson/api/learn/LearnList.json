@@ -1,0 +1,9 @@
+{
+    "total": 5,
+    "list": [{ "id": 1, "name": "1怎样做一个成功的销售人员", "number": 20, "points": 20, "imgUrl": "./img/learn/learn1.png" },
+        { "id": 2, "name": "2销售人员的自我修养", "number": 20, "points": 20, "imgUrl": "./img/learn/learn2.png" },
+        { "id": 3, "name": "3销售人员必修课", "number": 20, "points": 20, "imgUrl": "./img/learn/learn3.png" },
+        { "id": 4, "name": "4卓越销售的七大秘诀", "number": 20, "points": 20, "imgUrl": "./img/learn/learn4.png" },
+        { "id": 5, "name": "5怎样做一个成功的销售人员", "number": 20, "points": 20, "imgUrl": "./img/learn/learn5.png" }
+    ]
+}

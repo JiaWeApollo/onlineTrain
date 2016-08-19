@@ -1,0 +1,32 @@
+<ion-view view-title="培训考核" hide-back-button="false" hide-tabs="false">
+    <ion-content class="padding has-subfooter">
+        <div bindonce ng-repeat="item in questionsList">
+            <div bo-switch="item.type">
+                <h4 bo-switch-when="1">选择题</h4>
+                <div class="choice-item" bindonce ng-repeat="c in item.subjects" ng-if="item.type==1">
+                    <h4 bo-bind="c.subjectTitle"></h4>
+                    <ion-list class="list-borderless" bindonce ng-repeat="r in c.options">
+                        <ion-radio ng-model="c.checked" ng-value="r.value" name="{{c.id}}">{{r.text}}</ion-radio>
+                    </ion-list>
+                </div>
+                <h4 bo-switch-when="2">多选题</h4>
+                <div class="choice-item" bindonce ng-repeat="c in item.subjects" ng-if="item.type==2">
+                    <h4 bo-bind="c.subjectTitle"></h4>
+                    <ion-list class="list-borderless" bindonce ng-repeat="r in c.options">
+                        <ion-checkbox ng-model="r.checked" ng-value="r.value">{{r.text}}</ion-checkbox>
+                    </ion-list>
+                </div>
+                <h4 bo-switch-when="3">简答题</h4>
+                <div class="short-item" bindonce ng-repeat="c in item.subjects" ng-if="item.type==3">
+                    <h4 bo-bind="c.subjectTitle"></h4>
+                    <label class="col">
+                        <textarea ng-model="c.content" class="full-image border" name="" rows="4" cols=""></textarea>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+    <div class="bar bar-subfooter sumbit padding-horizontal">
+        <button class="button button-default button-clear button-small button-block fs14" ng-click="subData(questionsList)">提 交</button>
+    </div>
+</ion-view>
