@@ -454,11 +454,11 @@ define([
 		}))
 		
 		.state('app.myLearn.required', {   //必修课程
-			url: '/required',
+			url: '/requiredv/:code',
 			views: {
 				'tab-myLearn-required': {
 					templateUrl: 'templates/account/myLearn-required.html',
-					controller: 'myLearnListCtrl',
+					controller: 'MyLearnListCtrl',
 			        css: 'css/learn/learn.css',					
 				}
 			},
@@ -480,11 +480,11 @@ define([
 		})
 		
 		.state('app.myLearn.selective', {   //选修课程
-			url: '/selective',
+			url: '/selectivev/:code',
 			views: {
 				'tab-myLearn-selective': {
 					templateUrl: 'templates/account/myLearn-selective.html',
-					controller: 'myLearnListCtrl',
+					controller: 'MyLearnListCtrl',
 			        css: 'css/learn/learn.css',					
 				}
 			},
@@ -506,11 +506,11 @@ define([
 		})
 		
 		.state('app.myLearn.subject', {   //专题课程
-			url: '/subject',
+			url: '/subjectv/:code',
 			views: {
 				'tab-myLearn-subject': {
 					templateUrl: 'templates/account/myLearn-subject.html',
-					controller: 'myLearnListCtrl',
+					controller: 'MyLearnListCtrl',
 			        css: 'css/learn/learn.css',					
 				}
 			},
@@ -529,8 +529,60 @@ define([
 					}
 				]
 			}
-		})		
-		
+		})
+
+        .state('app.myLearnDetails', angularAMD.route({ //学习管理课程详情
+            url: '/mylearnDetails/:code/:id',
+            css: 'css/learn/learn.css',
+            views: {
+                'app-account': {
+                    templateUrl: 'templates/account/mylearnDetails.html',
+                    controller: 'MyLearnDetails'
+                }
+            },
+            resolve: {
+                loadController: ['$q', '$stateParams',
+                    function($q, $stateParams) {
+
+                        var learnCtrl = "app/controllers/learn/learnCtrl.js";
+                        var learnService = "app/services/learn/learnService.js";
+                        var deferred = $q.defer();
+
+                        require([learnCtrl, learnService], function() {
+                            deferred.resolve();
+                        });
+                        return deferred.promise;
+                    }
+                ]
+            }
+        }))		
+
+		.state('app.refund', angularAMD.route({ //申请报销
+			url: '/refund',
+			views: {
+				'app-account': {
+					templateUrl: 'templates/account/refund.html',
+					controller: 'AccountCtrl',
+					css:'css/account/account.css'
+				}
+			},
+			resolve: {
+				loadController: ['$q', '$stateParams',
+					function($q, $stateParams) {
+
+						var loadAccountCtrl = "app/controllers/account/accountCtrl.js";
+//						var timepicker =
+						var deferred = $q.defer();
+
+						require([loadAccountCtrl], function() {
+							deferred.resolve();
+						});
+						return deferred.promise;
+					}
+				]
+			}
+		}))	
+
 		.state('app.integral', angularAMD.route({ //积分详情
 			url: '/integral',
 			views: {
@@ -724,6 +776,14 @@ define([
             if (authData != null) {
                 authData = eval('(' + authData + ')');
                 $rootScope.userId = authData.userId;
+                $rootScope.userName = authData.userName;
+                
+                var i = authData.userId.toString().indexOf('8');
+                if (i == 0) {
+                    $rootScope.role = 't';
+                } else {
+                    $rootScope.role = 'x';
+                }
             }
 
             var isOnline = NetworkService.isOnline();

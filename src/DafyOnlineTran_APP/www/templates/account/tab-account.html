@@ -1,43 +1,50 @@
 <ion-view view-title="个人中心" hide-tabs="false">
    <ion-content>
     <div class=" ub ub-ac ub-pc ub-img1 account-box ub-ver">
-    	<img class="head-img" src="./img/account/head.png"/>
-    	<div class="light fs16 padding5-vertical">田小田</div>
-    	<p class="light">销售ID: 102256</p>
-    	<div class="ub full-image light">
-	     	<div class="col text-center vm fs16">
-	     		<img src="./img/account/train.png"/>
-	     		<span>102</span>
-	     	</div>
-	    	<div class="col text-center vm fs16">
-	     		<img src="./img/account/integral.png"/> <!--为讲师身份的时候这里为赞的图片zan.png-->
-	     		<span>204</span>	    		
-	    	</div>   		
-    	</div>
+        <img class="head-img" src="./img/account/head.png"/>
+        <div class="light fs16 padding5-vertical">{{userName}}</div>
+        <p class="light">工号: {{userId}}</p>
+        <div class="ub full-image light">
+            <div class="col text-center vm fs16">
+                <img src="./img/account/train.png"/>
+                <span>{{courses}}</span>
+            </div>
+
+            <div class="col text-center vm fs16">
+                <div ng-show="isShow">
+                    <img src="./img/account/integral.png"/> 
+                    <span>{{points}}</span>
+                </div>
+                <div ng-show="!isShow">
+                    <img src="./img/account/zan.png"/> 
+                    <span>{{likes}}</span>
+                </div>          
+            </div>          
+        </div>
     </div>
     <div class="row">
-    	<a href="#/app/myLearn" class="ub col col-33 ub-ac ub-pc ub-ver padding30-top">
-    		 <img src="./img/account/myLearn.png"/>
-    		 <div class="fs13 sub-ft">我的课程</div>
-    	</a>
-    	<a href="#/app/integral" class="ub col col-33 ub-ac ub-pc ub-ver padding30-top">
-    		 <img src="./img/account/myIntegral.png"/>
-    		 <div class="fs13 sub-ft">积分管理</div>
-    	</a>
-    	<a href="#/app/surveyList" class="ub col col-33 ub-ac ub-pc ub-ver padding30-top">
-    		 <img src="./img/account/mySurvey .png"/>
-    		 <div class="fs13 sub-ft">需求调研</div>
-    	<a>
+        <a href="#/app/myLearn" class="ub col col-33 ub-ac ub-pc ub-ver padding30-top">
+             <img src="./img/account/myLearn.png"/>
+             <div class="fs13 sub-ft">我的课程</div>
+        </a>
+        <a href="#/app/integral" class="ub col col-33 ub-ac ub-pc ub-ver padding30-top">
+             <img src="./img/account/myIntegral.png"/>
+             <div class="fs13 sub-ft">积分管理</div>
+        </a>
+        <a href="#/app/surveyList" class="ub col col-33 ub-ac ub-pc ub-ver padding30-top">
+             <img src="./img/account/mySurvey .png"/>
+             <div class="fs13 sub-ft">需求调研</div>
+        <a>
     </div>
     <div class="row">
-    	<a href="#/app/myTrain" class="ub col col-33 ub-ac ub-pc ub-ver padding30-top">  <!--讲师身份显示才显示我的培训-->
-    		 <img src="./img/account/mytrain.png"/>
-    		 <div class="fs13 sub-ft">我的培训</div>
-    	</a>    	
-    	<a href="#/app/setting" class="ub col col-33 ub-ac ub-pc ub-ver padding30-top">
-    		 <img src="./img/account/setting.png"/>
-    		 <div class="fs13 sub-ft">个人设置</div>
-    	</a>
+        <a href="#/app/myTrain" class="ub col col-33 ub-ac ub-pc ub-ver padding30-top" ng-show="{{role=='t'?true:false}}">  <!--讲师身份显示才显示我的培训-->
+             <img src="./img/account/mytrain.png"/>
+             <div class="fs13 sub-ft">我的培训</div>
+        </a>        
+        <a href="#/app/setting" class="ub col col-33 ub-ac ub-pc ub-ver padding30-top">
+             <img src="./img/account/setting.png"/>
+             <div class="fs13 sub-ft">个人设置</div>
+        </a>
     </div>
    </ion-content>
 </ion-view>

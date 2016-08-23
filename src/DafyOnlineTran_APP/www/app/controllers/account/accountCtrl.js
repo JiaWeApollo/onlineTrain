@@ -4,7 +4,17 @@
 define(['app'], function(app) {
     app.controller('AccountCtrl', ['$css', '$scope', '$rootScope', '$state', function($css, $scope, $rootScope, $state) {
             //$css.add('lib/angular-bootstrap/bootstrap.min.css');
+            $scope.userId = $rootScope.userId;
+            $scope.userName = $rootScope.userName;
+            $scope.role = $rootScope.role;
 
+            $scope.courses = 0; //我的课程数
+            $scope.points = 0; //我的积分
+            $scope.likes = 120; //我的点赞数
+
+            $scope.isShow = $scope.points > 0 ? true : false;
+
+            //console.log($rootScope.userName);
         }])
         //登录
         .controller('LoginCtrl', ['$rootScope', '$css', '$scope', '$state', '$ionicLoading', 'CommonService', 'AccountService', function($rootScope, $css, $scope, $state, $ionicLoading, CommonService, AccountService) {
@@ -29,7 +39,7 @@ define(['app'], function(app) {
                 if (user.userId == '') {
                     CommonService.showToast('请输入用户名!', 2000);
                     return;
-                }else if(!/^[0-9]*$/.test(user.userId)){
+                } else if (!/^[0-9]*$/.test(user.userId)) {
                     CommonService.showToast('用户名只能输入数字!', 2000);
                     return;
                 }
@@ -41,7 +51,17 @@ define(['app'], function(app) {
                 AccountService.login(user, function(data) {
                     if (data != null && data.state == 1) {
                         CommonService.setStorageItem('authorizationData', JSON.stringify(data));
-                        $rootScope.userId=user.userId;
+                        $rootScope.userId = user.userId;
+
+                        $rootScope.userName = data.userName;
+
+                        var i = data.userId.toString().indexOf('8');
+                        if (i == 0) {
+                            $rootScope.role = 't';
+                        } else {
+                            $rootScope.role = 'x';
+                        }
+
                         $state.go('app.home');
                     } else {
                         CommonService.removeStorageItem('authorizationData');
@@ -52,7 +72,7 @@ define(['app'], function(app) {
             };
         }])
         //注册
-        .controller('RegisterCtrl', ['$rootScope', '$css', '$scope', '$state', '$stateParams', '$ionicLoading', '$location','$interval','CommonService', 'AccountService', function($rootScope, $css, $scope, $state, $stateParams, $ionicLoading, $location,$interval,CommonService, AccountService) {
+        .controller('RegisterCtrl', ['$rootScope', '$css', '$scope', '$state', '$stateParams', '$ionicLoading', '$location', '$interval', 'CommonService', 'AccountService', function($rootScope, $css, $scope, $state, $stateParams, $ionicLoading, $location, $interval, CommonService, AccountService) {
             //$css.add('lib/angular-bootstrap/bootstrap.min.css');
             $scope.user = {
                 userId: '',
@@ -99,7 +119,17 @@ define(['app'], function(app) {
                         $ionicLoading.hide();
                         if (data != null && data.state == 1) {
                             CommonService.setStorageItem('authorizationData', JSON.stringify(data));
-                            $rootScope.userId=user.userId;
+                            $rootScope.userId = user.userId;
+
+                            $rootScope.userName = data.userName;
+
+                            var i = data.userId.toString().indexOf('8');
+                            if (i == 0) {
+                                $rootScope.role = 't';
+                            } else {
+                                $rootScope.role = 'x';
+                            }
+
                             $state.go('app.home');
                         } else {
                             CommonService.showToast(data.message, 2000);
@@ -123,10 +153,10 @@ define(['app'], function(app) {
                 }
             };
             $scope.verifyContent = "获取验证码";
-            $scope.paraevent=true;
+            $scope.paraevent = true;
 
             $scope.getVerifyCode = function(user) { ///获取验证码
-                if($scope.paraevent===false){
+                if ($scope.paraevent === false) {
                     return;
                 }
                 if (user.mobile === undefined || user.mobile === '') {
@@ -140,7 +170,8 @@ define(['app'], function(app) {
                         } else {
                             CommonService.showToast(data.message, 2000);
                         }
-                        var second = 60,timePromise = undefined;
+                        var second = 60,
+                            timePromise = undefined;
                         timePromise = $interval(function() {
                             if (second <= 0) {
                                 $interval.cancel(timePromise);
@@ -160,14 +191,16 @@ define(['app'], function(app) {
                 }
             };
         }])
-          //我的课程
-        .controller('myLearnListCtrl', ['$rootScope', '$scope', '$state', '$stateParams', '$ionicLoading', '$timeout','$window', 'LearnService', function($rootScope, $scope, $state, $stateParams, $ionicLoading, $timeout,$window,LearnService) {
-            var id = $stateParams.id;
+        //我的课程列表
+        .controller('MyLearnListCtrl', ['$rootScope', '$scope', '$state', '$stateParams', '$ionicLoading', '$timeout', '$window', 'LearnService', function($rootScope, $scope, $state, $stateParams, $ionicLoading, $timeout, $window, LearnService) {
+            var code = $stateParams.code;
+
             $scope.parameter = {
-                id:parseInt(id),
+                id:0,
+                code: code,
                 userId: parseInt($rootScope.userId),
                 page: 1,
-                pageSize: 8, 
+                pageSize: 8,
             };
             $scope.goBack = function() { //返回
                 $window.location = '#/app/account';
@@ -177,7 +210,7 @@ define(['app'], function(app) {
             $scope.rowsCount = 0;
 
             $scope.openUrl = function(id) {
-                $state.go('app.learnDetails', {'typeId':$scope.parameter.id,'id': id});
+                $state.go('app.myLearnDetails', { 'code': $scope.parameter.code, 'id': id });
             }
 
             function getLearnList() {
@@ -233,10 +266,65 @@ define(['app'], function(app) {
                 $scope.$broadcast('scroll.refreshComplete');
             };
 
-        }])        
-        
+        }])
+        //我的课程详情
+        .controller('MyLearnDetails', ['$rootScope', '$scope', '$state','$location', '$cordovaInAppBrowser', '$stateParams', '$ionicLoading', '$ionicHistory', 'LearnService','CommonService', function($rootScope, $scope, $state,$location,$cordovaInAppBrowser, $stateParams, $ionicLoading, $ionicHistory, LearnService,CommonService) {
+            $scope.code=$stateParams.code;
+
+            $scope.goBack = function() { //返回
+                //$ionicHistory.goBack();
+                //window.history.back();
+                $location.url('/app/myLearn/'+$scope.code+'v/'+$scope.code);
+            }
+            var id = $stateParams.id;
+            $scope.parameter = {
+                id:parseInt(id), //课程ID
+                userId: $rootScope.userId, //用户ID
+            };
+            $scope.learnModel = {
+                id: 0,
+                name: '',
+                hits: 0,
+                number: 0,
+                points: 0,
+                desc: '',
+                imgUrl: './img/learn/play.png',
+                playUrl: ''
+            };
+
+            $ionicLoading.show();
+            LearnService.getLearnDetails($scope.parameter, function(data) {
+                if (data != null) {
+                    $scope.learnModel = data;
+                }
+                $ionicLoading.hide();
+            });
+            var options = {
+                location: 'yes',
+                clearcache: 'yes',
+                toolbar: 'no'
+            };
+
+            $scope.play = function(url) {//添加播放记录
+                console.log($scope.parameter);
+
+                LearnService.addPlayRecord($scope.parameter, function(data) { 
+                    if (data == null) {
+                       CommonService.showToast("增加播放次数失败",2000);
+                    }else if(data.state<=0){
+                        CommonService.showToast(data.message,2000);
+                    }
+                });
+                $cordovaInAppBrowser.open(url, '_system', options).then(function(event) {
+                   
+                })
+                .catch(function(event) {
+                   
+                });
+            }
+        }])
         //我的培训列表
-        app.controller('myTrainListCtrl', ['$rootScope', '$scope', '$state', '$stateParams', '$ionicLoading', 'TrainService', function($rootScope, $scope, $state, $stateParams, $ionicLoading, TrainService) {
+        .controller('myTrainListCtrl', ['$rootScope', '$scope', '$state', '$stateParams', '$ionicLoading', 'TrainService', function($rootScope, $scope, $state, $stateParams, $ionicLoading, TrainService) {
             var state = $stateParams.state;
 
             $scope.parameter = {
@@ -287,5 +375,5 @@ define(['app'], function(app) {
                 getTrainList();
                 $scope.$broadcast('scroll.refreshComplete');
             };
-        }])
+        }]);
 });

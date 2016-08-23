@@ -15,6 +15,7 @@ define(['app'], function(app) {
             var id = $stateParams.id;
             $scope.parameter = {
                 id:parseInt(id),
+                code:'',
                 userId: parseInt($rootScope.userId),
                 page: 1,
                 pageSize: 8, 
