@@ -1,7 +1,7 @@
 {
     "list": [
-    			{ "id":1,"name": "李明1","position":"培训师1","imgUrl":"./img/home/slider-1.png","link":"#","desc":"描述1"},
-    			{ "id":2,"name": "李明2","position":"培训师2","imgUrl":"./img/home/slider-1.png","link":"#","desc":"描述2"},
-    			{ "id":3,"name": "李明3","position":"培训师3","imgUrl":"./img/home/slider-1.png","link":"#","desc":"描述3"}
+    			{ "id":1,"name": "李明1","title":"新员工入职培训考核","imgUrl":"./img/home/slider-1.png","desc":"描述1"},
+    			{ "id":2,"name": "李明2","title":"销售成交九步法_课件","imgUrl":"./img/home/slider-1.png","desc":"描述2"},
+    			{ "id":3,"name": "李明3","title":"销售技巧全攻略_课件","imgUrl":"./img/home/slider-1.png","desc":"描述3"}
         	]
 }

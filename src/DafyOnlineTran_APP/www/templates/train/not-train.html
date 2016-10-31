@@ -1,35 +1,43 @@
 <ion-view view-title="培训列表-未培训" hide-tabs="false">
-	<ion-content scroll="true" lazy-scroll>
-		<ion-refresher on-refresh="doRefresh()" pulling-text="下拉刷新" refreshing-text="加载中..."></ion-refresher>
-		<div class="padding item not-train" bindonce ng-repeat="item in trainList" ng-click="openUrl(item.id)">
-			<!--时间-->
-			<div class="fs13 ub">
-				<div class="col" bo-text="item.datetime">
-					2016-8-8 14:00
-				</div>
-			</div> 
-			<!--课程信息-->
-			<div class="ub padding5-vertical">  
-			   <div class="col col-30">
-			   	   <img class="full-image"  lazy-src="{{item.imgUrl}}"/>
-			   </div>
-			   <div class="col col-70 col-bottom">
-			   	   <h2 class="bold padding5-bottom" bo-text="item.name">顾客类型及心理分析</h2>
-			   	   <h3 class="sub-ft">讲师：<span bo-text="item.lecturer"></span></h3>
-			   	   <p class="fs12" bo-text="item.desc">本课程未学员分享顾客类型及心理分析本课程未学员分享顾客类型及心理分析</p>
-			   </div>			   
-			</div>
-			<!--地点-->
-			<div class="ub ub-ac">
-				<div class="padding5-left"><i class="icon ion-ios-location-outline fs13"></i></div>
-				<div class="col vm sub-ft fs12 ellipsis" bo-text="item.address">
-					深圳市福田区福中一路1016号地铁大厦17楼培训室
-				</div>
-				<div class="">
-					<button class="button button-small button-assertive" >未培训</button>
-				</div>
-			</div>
-		</div>
-		<ion-infinite-scroll ng-if="more" icon="ion-loading-c" on-infinite="loadMore()" distance="10%"></ion-infinite-scroll>
-	</ion-content>
+    <ion-content scroll="true" lazy-scroll>
+        <ion-refresher on-refresh="doRefresh()" pulling-text="下拉刷新" refreshing-text="加载中..."></ion-refresher>
+        <div class="padding item not-train" bindonce ng-repeat="item in trainList" ng-click="openUrl(item.id)">
+            <!--时间-->
+            <div class="fs13 ub">
+                <div class="col" bo-text="item.datetime | date:'yyyy-MM-dd'">
+                    2016-8-8 14:00
+                </div>
+            </div>
+            <!--课程信息-->
+            <div class="ub padding5-vertical">
+                <div class="col col-30">
+                    <img class="full-image" lazy-src="{{item.imgUrl}}" src="" err-src="./img/train/train_bank.png"/>
+                </div>
+                <div class="col col-70 col-bottom">
+                    <h2 class="bold padding5-bottom" bo-text="item.name">顾客类型及心理分析</h2>
+                    <h3 class="sub-ft">讲师：<span bo-text="item.lecturer"></span></h3>
+                    <p class="fs12" bo-text="item.desc">本课程未学员分享顾客类型及心理分析本课程未学员分享顾客类型及心理分析</p>
+                </div>
+            </div>
+            <!--地点-->
+            <div class="ub ub-ac">
+                <div class="padding5-left"><i class="icon ion-ios-location-outline fs13"></i></div>
+                <div class="col vm sub-ft fs12 ellipsis" bo-text="item.address">
+                    深圳市福田区福中一路1016号地铁大厦17楼培训室
+                </div>
+                <div class="" ng-show="isShow">
+                    <button class="button button-small button-default" ng-show="item.state==2?true:false">进行中</button>
+                    <button class="button button-small button-default" ng-show="item.state==1?true:false">进行中</button>
+                    <button class="button button-small button-assertive" ng-show="item.state==0?true:false">未开始</button>
+                </div>
+                <div class="" ng-show="!isShow">
+                    <button class="button button-small button-assertive" ng-show="item.state==-1?true:false">已取消</button>
+                    <button class="button button-small button-default" ng-show="item.state==0?true:false">未开始</button>
+                    <button class="button button-small button-default" ng-show="item.state==1?true:false">进行中</button>
+                </div>
+            </div>
+        </div>
+        <no-data ng-show="trainList.length==0?true:false"></no-data>
+        <ion-infinite-scroll ng-if="more" icon="ion-loading-c" on-infinite="loadMore()" distance="5%"></ion-infinite-scroll>
+    </ion-content>
 </ion-view>

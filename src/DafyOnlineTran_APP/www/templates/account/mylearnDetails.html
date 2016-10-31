@@ -1,7 +1,10 @@
-<ion-view view-title="课程详情" hide-nav-bar="true" hide-tabs="false">
+<ion-view view-title="课程详情" hide-nav-bar="false"  hide-tabs="false" hide-back-button="true">
+    <ion-nav-buttons side="left">
+        <button class="button bg-default" ng-click="goBack()"><i class="icon ion-chevron-left light"></i></button>
+    </ion-nav-buttons>
     <ion-content bindonce ng-model="learnModel">
         <div class=" ub ub-ac ub-pc ub-img1 vedio-box" ng-style="{'background-image': 'url(' + learnModel.imgUrl + ')'}">
-            <a class="icon ion-ios-arrow-left" ng-click="goBack()"></a>
+            <!-- <a class="icon ion-ios-arrow-left" ng-click="goBack()"></a> -->
             <img src="./img/learn/play.png" ng-click="play(learnModel.playUrl)"/>
         </div>
         <div class="vedio-info">

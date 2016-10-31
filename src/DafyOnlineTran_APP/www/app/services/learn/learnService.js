@@ -6,7 +6,7 @@ define([
 ], function(app) {
     'use strict';
 
-    app.factory('LearnService', function($q, $http, CommonService) {
+    app.factory('LearnService', ['$q', '$http', 'CommonService',function($q, $http, CommonService) {
         return {
             getLearnTypeList: function(par, callback) { //获取学习模块类型列表
                 CommonService.getJsonData('api/Learn/LearnTypeList', par).then(function(data) {
@@ -15,6 +15,7 @@ define([
             },
             getLearnList: function(par, callback) { //获取学习课程列表
                 CommonService.getJsonData('api/Learn/LearnList', par).then(function(data) {
+                    //console.log(data);
                     callback(data);
                 });
             },
@@ -29,5 +30,5 @@ define([
                 });
             }
         }
-    });
+    }]);
 });

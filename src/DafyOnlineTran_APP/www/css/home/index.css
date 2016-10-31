@@ -12,6 +12,7 @@ ion-slide .slide{position:relative;}
 .train-title{text-align: center;font-size: 0.6rem;}
 .train-title *{vertical-align: middle;}
 .train-title i{font-size: 14px;}
+.relative{position: relative;}
 /*调查*/
 .survey .time{width: 6em;color:#00ADB2;border: 1px solid #00ADB2;border-radius:1em;text-align: center;line-height: 16px;margin-bottom:.5em;}
 .survey a.button{margin-top: 2.4em;background: #00ADB2;color: #FFFFFF;border-radius: 1em;font-size:.9em;min-height: 30px;line-height: 27px;}

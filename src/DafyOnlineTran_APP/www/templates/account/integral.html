@@ -1,42 +1,21 @@
 <ion-view view-title="积分详情" hide-tabs="true">
-  <ion-content>
-	<ion-list class="list-borderless">
-	    <ion-item>
-	    	<div class="row row-no-padding ">
-	    		<div class="col col-28">
-	    			<img class="full-image" src="./img/learn/learn1.png"/>
-	    		</div>
-	    		<div class="col col-60 padding5-left">
-	    			<h3 class="lh27">新员工入职培训考核</h3>
-	    			<p>2016/7/28</p>
-	    		</div>
-	    		<div class="col col-center assertive">+2</div>
-	    	</div>
-	    </ion-item>
-	    <ion-item>
-	    	<div class="row row-no-padding ">
-	    		<div class="col col-28">
-	    			<img class="full-image" src="./img/learn/learn2.png"/>
-	    		</div>
-	    		<div class="col col-60 padding5-left">
-	    			<h3 class="lh27">销售成交九步法_课件</h3>
-	    			<p>2016/8/28</p>
-	    		</div>
-	    		<div class="col col-center assertive">+3</div>
-	    	</div>
-	    </ion-item>
-	    <ion-item>
-	    	<div class="row row-no-padding ">
-	    		<div class="col col-28">
-	    			<img class="full-image" src="./img/learn/learn3.png"/>
-	    		</div>
-	    		<div class="col col-60 padding5-left">
-	    			<h3 class="lh27">销售技巧全攻略_课件</h3>
-	    			<p>2016/9/28</p>
-	    		</div>
-	    		<div class="col col-center assertive">+5</div>
-	    	</div>
-	    </ion-item>
-	</ion-list>      
-  </ion-content>
+    <ion-content scroll="true" lazy-scroll>
+        <ion-refresher on-refresh="doRefresh()" pulling-text="下拉刷新" refreshing-text="加载中..."></ion-refresher>
+        <ion-list class="list-borderless">
+            <ion-item bindonce ng-repeat="item in integralList">
+                <div class="row row-no-padding ">
+                    <div class="col col-28">
+                        <img class="full-image" lazy-src="{{item.imgUrl}}" src="" err-src="./img/learn/learn_bank.png"/>
+                    </div>
+                    <div class="col col-60 padding5-left">
+                        <h3 class="lh27" bo-text="item.title"></h3>
+                        <p bo-text="item.datetime | date:'yyyy-MM-dd'">2016/7/28</p>
+                    </div>
+                    <div class="col col-center assertive">+<span bo-text="item.points"></span> </div>
+                </div>
+            </ion-item>
+            <no-data ng-show="integralList.length==0?true:false"></no-data>
+        </ion-list>
+        <ion-infinite-scroll ng-if="more" icon="ion-loading-c" on-infinite="loadMore()" distance="5%"></ion-infinite-scroll>
+    </ion-content>
 </ion-view>

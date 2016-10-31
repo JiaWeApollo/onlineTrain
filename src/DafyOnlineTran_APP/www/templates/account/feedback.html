@@ -3,9 +3,9 @@
         <button class="button bg-default" ng-click="send()"><span class="light fs16">发送</span></button>
     </ion-nav-buttons>	-->
 	<ion-content overflow-scroll="false" class="padding">
-     	<textarea class="full-image border" rows="15" placeholder="请输入您的宝贵意见..."></textarea>
+     	<textarea class="full-image border" rows="15" placeholder="请输入您的宝贵意见..." ng-model="user.content"></textarea>
 		<div class="ub ub-ac ub-pc">
-		 <button class="button button-block button-small button-default fs14">提交</button>	
+		 <button class="button button-block padding5-verticalll button-default fs14" ng-click="addFeedback(user)">提交</button>
 		</div>     	
 	</ion-content>	
 </ion-view>

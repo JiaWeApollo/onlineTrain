@@ -1,0 +1,12 @@
+{
+    "startCity": "深圳",
+    "toCity": "长沙",
+    "startDate": "08/25",
+    "endDate": "08/26",
+    "days": 2,
+    "tollCharge": 250,
+    "trafficFee": 150,
+    "totalAccommodation": 400,
+    "totalMeals": 200,
+    "total": 1000
+}

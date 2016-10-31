@@ -25,9 +25,23 @@ ion-footer-bar.zc-bar{width: 80%;left: 10%;}
 #verifyCode {border-right: 1px solid #00ADB2;height: 25px;}
 /*个人中心*/
 .account-box{background-image: url(./../../img/account/head-bg.png);height: 11rem;}
-.head-img{width:4.2rem;}
+.head-img{
+	width:4.2rem;
+	height: 4.2rem;
+	line-height: 0;	/* remove line-height */ 
+	display: inline-block;	/* circle wraps image */
+	border-radius: 50%;	/* relative value */
+	-moz-border-radius: 50%;
+	-webkit-border-radius: 50%;
+	transition: linear 0.25s;
+}
 .padding45-top{padding-top: 45px;}
 .padding30-top{padding-top: 30px;}
+.headDiv{
+	width:4.2rem;
+	height: 4.2rem;
+	overflow: hidden;	
+}
 /*个人设置*/
 .setting-list .item{margin-top:10px ;}
 .logo-box{margin: 1.5rem auto;}

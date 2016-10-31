@@ -3,50 +3,52 @@
 		<div class="list">
 			<label class="item-input item-select padding">
 			    <div class="input-label fs14">费用类型</div>
-			    <select>
-			        <option>费用类型1</option>
-			        <option>费用类型2</option>
-			        <option>费用类型3</option>
+			    <select ng-model="expenseModel.costType" ng-options="item.value as item.text for item in costTypes">
+			        <option value="">选择费用类型</option>
 			    </select>
             </label>
 			<label class="item-input ub padding">
 			    <div class="fs14 ub-f1">出发城市</div>
+			    <input class="col col-60" type="text" ng-model="expenseModel.startCity">
 	            <i class="sub-ft ion-ios-arrow-right"></i>
             </label>
 			<label class="item-input ub padding">
 			    <div class="fs14 ub-f1">到达城市</div>
+			    <input class="col col-60" type="text" ng-model="expenseModel.toCity">
 	            <i class="sub-ft ion-ios-arrow-right"></i>
             </label>
 			<label class="item-input ub padding">
 			    <div class="fs14 ub-f1">开始时间</div>
+			    <input class="col col-60" type="text" ng-model="expenseModel.startDate" ng-click="selectDatePicker('startDate')">
 	            <i class="sub-ft ion-ios-arrow-right"></i>
             </label>
 			<label class="item-input ub padding">
-			    <div class="fs14 ub-f1">结束时间</div>
+			    <div class="fs14 ub-f1">结束时间</div> 
+			    <input class="col col-60" type="text" ng-model="expenseModel.endDate" ng-click="selectDatePicker('endDate')">
 	            <i class="sub-ft ion-ios-arrow-right"></i>
             </label>
 			<label class="item-input ub padding row-no-padding">
 			    <div class="fs14 col col-25">天  数</div>
-	            <input type="number" >
+	            <input type="number" ng-model="expenseModel.days">
             </label>
 			<label class="item-input ub padding row-no-padding">
 			    <div class="fs14 col col-28">长途交通费</div>
-	            <input type="number" >
+	            <input type="number" ng-model="expenseModel.tollCharge">
             </label>
 			<label class="item-input ub padding row-no-padding">
 			    <div class="fs14 col col-28">市内交通费</div>
-	            <input type="number" >
+	            <input type="number" ng-model="expenseModel.trafficFee">
             </label>
 			<label class="item-input ub padding row-no-padding">
 			    <div class="fs14 col col-28">总住宿费</div>
-	            <input type="number" >
+	            <input type="number" ng-model="expenseModel.totalAccommodation">
             </label>
 			<label class="item-input ub padding row-no-padding">
 			    <div class="fs14 col col-28">总餐费</div>
-	            <input type="number" >
+	            <input type="number" ng-model="expenseModel.totalMeals">
             </label>
 			<div class="ub ub-ac ub-pc padding-horizontal">
-		     <button class="button button-block button-small button-default button-clear fs14">提交</button>	
+		     <button class="button button-block button-default button-clear fs14" ng-click="applyExpense(expenseModel)">提交</button>	
 		    </div>             
 		</div>     
 	</ion-content>

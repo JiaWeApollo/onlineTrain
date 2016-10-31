@@ -2,26 +2,39 @@
  * Created by tianxc on 16-7-29.
  */
 define(['app'], function(app) {
-    app.controller('HomeCtrl', ['$rootScope', '$cordovaGeolocation', '$css', '$scope', '$ionicPopup', '$location', '$sce', '$ionicSlideBoxDelegate', 'HomeService', 'CommonService', function($rootScope, $cordovaGeolocation, $css, $scope, $ionicPopup, $location, $sce, $ionicSlideBoxDelegate, HomeService, CommonService) {
+    app.controller('HomeCtrl', ['$rootScope','$scope', '$ionicPopup', '$location', '$sce', '$ionicSlideBoxDelegate', 'HomeService', 'CommonService', function($rootScope, $scope, $ionicPopup, $location, $sce, $ionicSlideBoxDelegate, HomeService, CommonService) {
 
-        var userModel = {
-            userId: $rootScope.userId
-        };
-        $scope.bannerList=[];
-        HomeService.bannerList(null, function(data) {
-            if (data != null) {
-                $scope.bannerList = data.list;
-                //console.log($scope.bannerList);
-                $ionicSlideBoxDelegate.update();
-                $ionicSlideBoxDelegate.$getByHandle("slideboximgs").loop(true);
-            }
-        });
-        $scope.homeList=[];
+        //alert('HomeCtrl $rootScope.token='+$rootScope.token);
+        var userModel = null;
+        $scope.bannerList = [];
+
+        if (CommonService.getStorageItem('bannerListData') == null || CommonService.getStorageItem('bannerListData') === 'undefined') { //本地化存储
+            //$ionicLoading.show();
+            HomeService.bannerList(null, function(data) {
+                if (data != null) {
+                    $scope.bannerList = data.list;
+                    $ionicSlideBoxDelegate.update();
+                    $ionicSlideBoxDelegate.$getByHandle("slideboximgs").loop(true);
+
+                    CommonService.setStorageItem('bannerListData', JSON.stringify(data.list));
+                }
+            });
+        } else {
+            $scope.bannerList = JSON.parse(CommonService.getStorageItem('bannerListData'));
+        }
+
+        $scope.homeList = [];
+        // if (CommonService.getStorageItem('homeListData') == null) { //本地化存储
         HomeService.homeList(userModel, function(data) {
             if (data != null) {
                 $scope.homeList = data.list;
+                //CommonService.setStorageItem('homeListData', JSON.stringify(data.list));
+            } else {
+                var data = { list: [{ 'code': 'train', 'train': [] }, { 'code': 'learn', 'learn': [] }, { 'code': 'survey', 'survey': [] }] };
+                $scope.homeList = data.list;
             }
         });
+
         // 显示定制弹出框
         $scope.showPopup = function() {
             $scope.data = {}

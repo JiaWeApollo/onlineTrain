@@ -3,7 +3,7 @@
         <ion-slide-box does-continue="true" auto-play="true" slide-interval="1000" delegate-handle="slideboximgs" show-pager="false">
             <ion-slide bindonce ng-repeat="item in bannerList">
                 <div class="slide">
-                    <img width="100%" bo-src="item.imgUrl">
+                    <img width="100%" bo-src="item.profileImg">
                     <div class="slide-info row row-center">
                         <div class=" ub ub-ac fs16" bo-text="item.name">田小田</div>
                         <div class="col">
@@ -15,45 +15,52 @@
             </ion-slide>
         </ion-slide-box>
         <div class="container train">
-            <div class="row row-center title-box">
+            <a href="#/app/train" class="row row-center title-box sub-ft">
                 <div class="col"><i class="line"></i>培训管理</div>
-                <a class="sub-ft" href="#/app/train"><i class="icon ion-chevron-right arrow"></i></a>
-            </div>
+                <i class="icon ion-chevron-right arrow"></i>
+            </a>
             <div class="row">
-                <div class="col" bindonce ng-repeat="item in homeList[0].train">
+                <div class="col col-33" bindonce ng-repeat="item in homeList[0].datas">
                     <a class="sub-ft" href="#/app/trainDetails/{{item.id}}">
-                        <img class="train-img" lazy-src="{{item.imgUrl}}" src="" err-src="./img/home/train.png" />
+                        <img class="train-img" lazy-src="{{item.imgUrL}}" src="" err-src="./img/home/train.png" />
                         <div class="train-title " bo-text="item.title">七月份入职培训</div>
                     </a>
                 </div>
             </div>
+            <no-data ng-show="homeList[0].datas.length==0?true:false"></no-data>
         </div>
         <div class="container learn">
-            <div class="row row-center title-box">
+            <a href="#/app/learn" class="row row-center title-box sub-ft">
                 <div class="col"><i class="line"></i>学习管理</div>
-                <a class="sub-ft" href="#/app/learn"><i class="icon ion-chevron-right arrow"></i></a>
-            </div>
+                <i class="icon ion-chevron-right arrow"></i>
+            </a>
             <div class="row">
-                <div class="col" bindonce ng-repeat="item in homeList[1].learn">
-                    <a class="sub-ft" href="#/app/learn/learnDetails/{{item.id}}"> <img class="learn-img" lazy-src="{{item.imgUrl}}" src="" err-src="./img/home/learn.png" /></a>
+                <div class="col col-33 relative" bindonce ng-repeat="item in homeList[1].datas">
+                    <a class="sub-ft" href="#/app/learn/learnDetails/{{item.id}}"> 
+                    	<img class="learn-img" lazy-src="{{item.imgUrL}}" src="" err-src="./img/home/learn.png" />
+                    	<div class="fs12" bo-text="item.title"></div>
+                    </a>
                 </div>
             </div>
+            <no-data ng-show="homeList[1].datas.length==0?true:false"></no-data>
         </div>
         <div class="container survey">
-            <div class="row row-center title-box">
+            <a href="#/app/surveyList/0" class="row row-center title-box sub-ft">
                 <div class="col"><i class="line"></i>培训需求调研</div>
-                <a class="sub-ft" href="#/app/surveyList"><i class="icon ion-chevron-right arrow"></i></a>
-            </div>
+                <i class="icon ion-chevron-right arrow"></i>
+            </a>
             <div class="row">
                 <ion-list class="list-borderless col">
-                    <ion-item class=" item-button-right" bindonce ng-repeat="item in homeList[2].survey">
-                        <h4 class="time" bo-text="item.datetime">2016.8.6</h4>
+                    <ion-item class=" item-button-right" bindonce ng-repeat="item in homeList[2].datas">
+                        <h4 class="time" bo-text="item.datetime | date:'yyyy-MM-dd'">2016.8.6</h4>
                         <h3 bo-text="item.title">入职培训需求调研</h3>
                         <p bo-text="item.desc">您对入职培训有什么需求</p>
-                        <a class="button button-clear" ng-click="showPopup();">立即填写</a>
+                        <a class="button" ng-show="item.state==1?true:false">已完成</a>
+                        <a class="button button-clear" ng-show="item.state==0?true:false" href="#app/surveyExam/2/{{item.id}}">立即填写</a>
                     </ion-item>
                 </ion-list>
             </div>
+            <no-data ng-show="homeList[2].datas.length==0?true:false"></no-data>
         </div>
     </ion-content>
 </ion-view>

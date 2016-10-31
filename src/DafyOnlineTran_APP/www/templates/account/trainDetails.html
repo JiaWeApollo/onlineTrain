@@ -1,0 +1,95 @@
+<ion-view view-title="培训详情" hide-nav-bar="false" hide-tabs="true" hide-back-button="false">
+    <ion-content bindonce="trainModel" lazy-scroll>
+        <ion-refresher on-refresh="doRefresh()" pulling-text="下拉刷新" refreshing-text="加载中..."></ion-refresher>
+        <div class="padding5 item not-train">
+            <!--课程信息-->
+            <div class="ub padding5-vertical">
+                <div class="col col-36">
+                    <img class="full-image" lazy-src="{{trainModel.imgUrl}}" src="" err-src="./img/train/train_bank.png"/>
+                </div>
+                <div class="col col-bottom trainInfo fs12 {{trainModel.state==0?'sub-ft':''}}">
+                    <!--未培训保留sub-ft,已培训去掉sub-ft-->
+                    <h2 class="bold">{{trainModel.name}}</h2>
+                    <h3>讲师：{{trainModel.lecturer}}</h3>
+                    <h3>参加人数：{{trainModel.number}}</h3>
+                    <h3>时间：{{trainModel.datetime | date:'yyyy-MM-dd'}}</h3>
+                    <h3 class=" no-ellipsis ub">
+                    <div class="">地点：</div>
+                    <div class="ub-f1">
+                        {{trainModel.address}}
+                    </div>
+                   </h3>
+                </div>
+            </div>
+        </div>
+        <!--培训内容-->
+        <div class="padding item not-train">
+            <h5 class="fs14 padding-bottom">培训内容</h5>
+            <p class="fs12 no-ellipsis">{{trainModel.desc}}</p>
+            <div class="row btn-group" style="{{trainModel.state===2?'':'display:none'}}">
+                <div class="col padding-horizontal"><a href="#/app/refund/{{trainModel.id}}" class="button button-block button-small button-default button-clear">申请报销</a></div>
+            </div>
+        </div>
+        <!--取消培训-->
+        <div class="padding item not-train" style="{{trainModel.state==-1?'':'display:none'}}">
+            <h5 class="fs14 padding-bottom">取消原因</h5>
+            <p class="fs12 no-ellipsis">{{trainModel.cancelReason}}</p>
+        </div>
+        <!--申请报销-->
+        <div class="padding item not-train" style="{{trainModel.state==3?'':'display:none'}}" bindonce="expenseModel">
+            <h5 class="fs14 padding-bottom">我的报销</h5>
+            <div class="row">
+            	<p class="col col-50 fs12">{{expenseModel.startCity}} <i class="icon ion-ios-arrow-thin-right"></i> {{expenseModel.toCity}}</p>
+            	<p class="col col-40 fs12">{{expenseModel.startDate  | date:'MM-dd'}}~{{expenseModel.endDate | date:'MM-dd'}}</p>
+            	<p class="col col-10 text-right fs12"><span class="assertive">{{expenseModel.days}}</span>天</p>
+            </div>
+            <div class="ub">
+            	<div class="ub-f1">
+            	   <p class="fs12 text-center">长途交通费</p>
+            	   <p class="fs12 text-center"><span class="assertive">{{expenseModel.tollCharge}}</span></p>
+            	</div>
+            	<div class="ub-f1">
+            	   <p class="fs12 text-center">市内交通费</p>
+            	   <p class="fs12 text-center"><span class="assertive">{{expenseModel.trafficFee}}</span></p>
+            	</div>
+            	<div class="ub-f1">
+            	   <p class="fs12 text-center">总住宿费</p>
+            	   <p class="fs12 text-center"><span class="assertive">{{expenseModel.totalAccommodation}}</span></p>
+            	</div>
+            	<div class="ub-f1">
+            	   <p class="fs12 text-center">总餐费</p>
+            	   <p class="fs12 text-center"><span class="assertive">{{expenseModel.totalMeals}}</span></p>
+            	</div>
+            	<div class="ub-f1">
+            	   <p class="fs12 text-center">总额</p>
+            	   <p class="fs12 text-center"><span class="assertive">{{expenseModel.total}}</span></p>
+            	</div>
+            </div>
+        </div>        
+        <!--学员评价-->
+        <div class="padding estimate">
+            <div class="ub ub-ac padding-bottom">
+                <div class="ub-f1 dark">学员评价</div>
+                <div class="vm"><img src="./img/train/thumbsup.png"></img><span class="fs16 Dark">{{trainModel.likes}}</span></div>
+                <!--已培训时显示获赞数-->
+            </div>
+            <ion-list class="list-borderless">
+                <ion-item class="padding-bottom" bindonce ng-repeat="item in commentsList">
+                    <div class="row row-no-padding padding5-bottom">
+                        <div class="headDiv">
+                            <img class="head-img" lazy-src="{{item.avatar|renderLitPic:'./img/train/head.png'}}" err-Src="./img/train/head.png"/>
+                        </div>
+                        <h3 class="col ub ub-ac" bo-text="item.name">田小田</h3>
+                    </div>
+                    <h3 class="padding-top no-ellipsis" bo-text="item.content">非常棒！理论和实际结合得很好，也有案例。真心赞一个~~~</h3>
+                    <div class="ub ub-ac sub-ft">
+                        <div class="ub-f1 fs12">学习进度： {{item.progress}}%</div>
+                        <div class="fs12" bo-text="item.datetime | date:'yyyy-MM-dd HH:mm:ss'">2010-8-28</div>
+                    </div>
+                </ion-item>
+                <no-data ng-show="commentsList.length==0?true:false"></no-data>
+            </ion-list>
+        </div>
+        <ion-infinite-scroll ng-if="more" icon="ion-loading-c" on-infinite="loadMore()" distance="10%"></ion-infinite-scroll>
+    </ion-content>
+</ion-view>

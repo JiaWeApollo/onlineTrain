@@ -15,9 +15,8 @@ gulp.task('default', ['sass']);
 
 gulp.task('sass', function(done) {
   gulp.src('./scss/ionic.app.scss')
-    .pipe(sass({
-      errLogToConsole: true
-    }))
+    .pipe(sass())
+    .on('error', sass.logError)
     .pipe(gulp.dest('./www/css/'))
     .pipe(minifyCss({
       keepSpecialComments: 0
@@ -50,25 +49,3 @@ gulp.task('git-check', function(done) {
   }
   done();
 });
-
-module.exports = function (grunt) {
-  // 项目配置
-  grunt.initConfig({
-    pkg: grunt.file.readJSON('package.json'),
-    uglify: {
-      options: {
-        banner: '/*! <%= pkg.file %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
-      },
-      build: {
-        src: 'www/app/<%=pkg.file %>.js',
-        dest: 'dest/<%= pkg.file %>.min.js'
-      }
-    }
-  });
-  // 加载提供"uglify"任务的插件
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-contrib-requirejs');
-  // 默认任务
-  grunt.registerTask('default', ['concat','uglify']);
-}

@@ -10,11 +10,13 @@ define([
         return {
             bannerList: function(par,callback) { //banner列表数据
                 CommonService.getJsonData('api/home/BannerList', par).then(function(data) {
+                    //console.log(data);
                     callback(data);
                 });
             },
             homeList: function(par,callback) {//首页模块列表数据
                 CommonService.getJsonData('api/home/HomeList', par).then(function(data) {
+                    //console.log(data);
                     callback(data);
                 });
             }

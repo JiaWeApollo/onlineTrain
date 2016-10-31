@@ -1,3 +1,6 @@
+/**
+ * Created by tianxc on 16-8-16.
+ */
 define(['app'], function(app) {
     app.controller('LearnTypeCtrl', ['$rootScope', '$scope', '$state', '$stateParams', '$ionicLoading', 'LearnService', function($rootScope, $scope, $state, $stateParams, $ionicLoading, LearnService) {
             $ionicLoading.show();
@@ -11,14 +14,14 @@ define(['app'], function(app) {
                 $state.go('app.learnList', { 'id': id });
             }
         }])
-        .controller('LearnListCtrl', ['$rootScope', '$scope', '$state', '$stateParams', '$ionicLoading', '$timeout','$window', 'LearnService', function($rootScope, $scope, $state, $stateParams, $ionicLoading, $timeout,$window,LearnService) {
+        .controller('LearnListCtrl', ['$rootScope', '$scope', '$state', '$stateParams', '$ionicLoading', '$timeout', '$window', 'LearnService', function($rootScope, $scope, $state, $stateParams, $ionicLoading, $timeout, $window, LearnService) {
             var id = $stateParams.id;
             $scope.parameter = {
-                id:parseInt(id),
-                code:'',
-                userId: parseInt($rootScope.userId),
+                id: parseInt(id),
+                code: '',
+                //userId: parseInt($rootScope.userId),
                 page: 1,
-                pageSize: 8, 
+                pageSize: 12,
             };
             $scope.goBack = function() { //返回
                 $window.location = '#/app/learn';
@@ -28,13 +31,14 @@ define(['app'], function(app) {
             $scope.rowsCount = 0;
 
             $scope.openUrl = function(id) {
-                $state.go('app.learnDetails', {'typeId':$scope.parameter.id,'id': id});
+                $state.go('app.learnDetails', { 'typeId': $scope.parameter.id, 'id': id });
             }
 
             function getLearnList() {
+                // console.log('====开始加载=====' + $scope.parameter.page);
                 $ionicLoading.show();
                 LearnService.getLearnList($scope.parameter, function(data) {
-                    if (data.list != null) {
+                    if (data != null && data.list != null) {
                         if (data.total <= $scope.parameter.pageSize)
                             $scope.more = false;
                         else if (parseInt($scope.learnList.length) * 2 >= data.total) {
@@ -42,7 +46,6 @@ define(['app'], function(app) {
                         } else {
                             $scope.more = true;
                         }
-
 
                         if (data.list.length % 2 == 0) {
                             $scope.rowsCount = parseInt(data.list.length / 2);
@@ -61,9 +64,9 @@ define(['app'], function(app) {
                             }
                             $scope.learnList.push(learnModel);
                         }
+                    } else {
+                        $scope.more = false;
                     }
-                    //console.log($scope.learnList);
-                    $scope.$broadcast('scroll.infiniteScrollComplete');
                     $scope.parameter.page++;
                     $ionicLoading.hide();
                 });
@@ -71,32 +74,35 @@ define(['app'], function(app) {
             //加载更多
             $scope.loadMore = function() {
                 try {
+                    //console.log('====加载更多=====loadMore');
                     getLearnList();
                 } catch (ex) {
                     $scope.more = false;
                 }
+                $scope.$broadcast('scroll.infiniteScrollComplete');
             };
-            // // 下拉刷新
+            // 下拉刷新
             $scope.doRefresh = function() {
                 $scope.parameter.page = 1;
                 $scope.learnList = [];
                 getLearnList();
-                $scope.$broadcast('scroll.refreshComplete');
+                $timeout(function() {
+                   $scope.$broadcast('scroll.refreshComplete');
+                }, 1000);
             };
-
         }])
-        .controller('LearnDetails', ['$rootScope', '$scope', '$state','$location', '$cordovaInAppBrowser', '$stateParams', '$ionicLoading', '$ionicHistory', 'LearnService','CommonService', function($rootScope, $scope, $state,$location,$cordovaInAppBrowser, $stateParams, $ionicLoading, $ionicHistory, LearnService,CommonService) {
-            $scope.typeId=$stateParams.typeId;
+        .controller('LearnDetails', ['$rootScope', '$scope', '$state', '$location', '$cordovaInAppBrowser', '$stateParams', '$ionicLoading', '$ionicHistory', 'LearnService', 'CommonService', function($rootScope, $scope, $state, $location, $cordovaInAppBrowser, $stateParams, $ionicLoading, $ionicHistory, LearnService, CommonService) {
+            $scope.typeId = $stateParams.typeId;
 
             $scope.goBack = function() { //返回
                 //$ionicHistory.goBack();
                 //window.history.back();
-                $location.url('/app/learn/learnList/'+$scope.typeId);
+                $location.url('/app/learn/learnList/' + $scope.typeId);
             }
             var id = $stateParams.id;
             $scope.parameter = {
-                id:parseInt(id), //课程ID
-                userId: $rootScope.userId, //用户ID
+                id: parseInt(id) //课程ID
+                    //userId: $rootScope.userId, //用户ID
             };
             $scope.learnModel = {
                 id: 0,
@@ -122,22 +128,22 @@ define(['app'], function(app) {
                 toolbar: 'no'
             };
 
-            $scope.play = function(url) {//添加播放记录
+            $scope.play = function(url) { //添加播放记录
                 console.log($scope.parameter);
 
-                LearnService.addPlayRecord($scope.parameter, function(data) { 
+                LearnService.addPlayRecord($scope.parameter, function(data) {
                     if (data == null) {
-                       CommonService.showToast("增加播放次数失败",2000);
-                    }else if(data.state<=0){
-                        CommonService.showToast(data.message,2000);
+                        CommonService.showToast("增加播放次数失败", 2000);
+                    } else if (data.state <= 0) {
+                        CommonService.showToast(data.message, 2000);
                     }
                 });
                 $cordovaInAppBrowser.open(url, '_system', options).then(function(event) {
-                   
-                })
-                .catch(function(event) {
-                   
-                });
+
+                    })
+                    .catch(function(event) {
+
+                    });
             }
         }]);
 });

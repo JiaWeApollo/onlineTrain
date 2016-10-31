@@ -1,4 +1,4 @@
 {
-  "content_url": "http://m.dafysz.com:8085/hotcode",
-  "config_url": "http://m.dafysz.com:8085/chcp.json"
+  "content_url": "https://bff21c8a.ngrok.io",
+  "config_url": "https://bff21c8a.ngrok.io/chcp.json"
 }

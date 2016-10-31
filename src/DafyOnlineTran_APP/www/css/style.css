@@ -12,7 +12,6 @@
     color: #cccccc;
     margin-left: 10px;
 }
-
 .agotime {
     float: right;
     margin-top: 5px;
@@ -60,7 +59,10 @@
 #favorite .item-avatar a{
     text-decoration: none;
 }
-
+#trainDetails ion-content {
+    top: 350px;
+    background-color: #fff;
+}
 /**
  * Action Sheets for Android
  * --------------------------------------------------
@@ -198,7 +200,11 @@
 ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, ion-tabs.tabs-color-active-positive .tab-item.active, 
 ion-tabs.tabs-color-active-positive .tab-item.activated{color:#00ADB2!important;}
 .tabs-striped .tab-item.tab-item-active, .tabs-striped .tab-item.active, .tabs-striped .tab-item.activated{border-color:#00ADB2!important;}
-
+.button.button-positive.activated{background-color: #00ADB2!important;}
+.checkbox input:checked:before, .checkbox input:checked + .checkbox-icon:before {
+    background: #00ADB2;
+    border-color: #00ADB2;
+}
 /*全局样式*/
 html body{color:#605E5E!important;}
 a {
@@ -279,6 +285,15 @@ ion-header-bar .header-item ,ion-header-bar h1 {color: #ffffff!important;}
   -ms-flex: 0 0 36%;
   flex: 0 0 36%;
   max-width: 36%;
+}
+.col-40{
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 40%;
+  -moz-box-flex: 0;
+  -moz-flex: 0 0 40%;
+  -ms-flex: 0 0 40%;
+  flex: 0 0 40%;
+  max-width: 40%;
 }
 .col-70{
   -webkit-box-flex: 0;

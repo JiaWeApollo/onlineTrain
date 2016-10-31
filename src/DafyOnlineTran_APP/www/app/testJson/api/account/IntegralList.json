@@ -1,0 +1,8 @@
+{
+	"total": 3,
+    "list": [
+    			{ "id":1,"title": "新员工入职培训考核1","imgUrl":"./img/learn/learn1.png","points": 20,"datetime":"08-08 14:20-17:20"},
+    			{ "id":2,"title": "新员工入职培训考核2","imgUrl":"./img/learn/learn2.png","points": 10,"datetime":"08-08 14:20-17:20"},
+    			{ "id":3,"title": "新员工入职培训考核3","imgUrl":"./img/learn/learn3.png","points": 15,"datetime":"08-08 14:20-17:20"}
+        	]
+}

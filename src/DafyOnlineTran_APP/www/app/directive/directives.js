@@ -90,6 +90,14 @@ define(['angular'], function(angular) {
                 }
             };
         }])
+        //暂无数据提示
+        .directive('noData', function() {
+            return {
+                restrict: 'E',
+                template: '<div class="padding text-center ub ub-ver"><img width="120" src="./img/account/noData.png"/><h4 class="sub-ft">暂无数据</h4></div>',
+                replace: true
+            };
+        })
         //隐藏底部导航
         .directive('hideTabs', ['$rootScope', function($rootScope) {
             return {

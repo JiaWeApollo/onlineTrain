@@ -6,10 +6,11 @@
         <ion-refresher on-refresh="doRefresh()" pulling-text="下拉刷新" refreshing-text="加载中..."></ion-refresher>
         <div class="row list-borderless" bindonce ng-repeat="r in learnList track by $index">
             <div class="col col-50 item padding" ng-repeat="item in r.items" ng-click="openUrl(item.id)">
-                <img width="100%" lazy-src="{{item.imgUrl}}" />
+                <img width="100%" lazy-src="{{item.imgUrl}}" src="" err-src="./img/learn/learn_bank.png"/>
                 <h5 class="" ng-bind="item.name"></h5>
             </div> 
         </div>
-        <ion-infinite-scroll ng-if="more" icon="ion-loading-c" on-infinite="loadMore()" distance="10%"></ion-infinite-scroll>
+        <no-data ng-show="learnList.length==0?true:false"></no-data>
+        <ion-infinite-scroll ng-if="more" icon="ion-loading-c" on-infinite="loadMore()" distance="5%"></ion-infinite-scroll>
     </ion-content>
 </ion-view>

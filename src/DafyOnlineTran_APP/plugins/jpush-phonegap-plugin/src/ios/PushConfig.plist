@@ -3,11 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>APP_KEY</key>
-	<string>873b6cd05b6eb62fd7dcc4bc</string>
+	<string></string>
 	<key>CHANNEL</key>
-	<string>在线培训</string>
-	<key>APS_FOR_PRODUCTION</key>
-	<string>0</string>
+	<string>Subscription</string>
 	<key>IsProduction</key>
 	<false/>
 	<key>IsIDFA</key>

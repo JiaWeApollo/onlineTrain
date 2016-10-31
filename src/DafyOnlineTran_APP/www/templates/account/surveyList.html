@@ -1,15 +1,22 @@
-<ion-view view-title="需求调研" hide-back-button="false" hide-tabs="true">
+<ion-view view-title="需求调研" hide-back-button="true">
+    <ion-nav-buttons side="left">
+        <button class="button bg-default" ng-click="goBack()"><i class="icon ion-chevron-left light"></i></button>
+    </ion-nav-buttons>
     <ion-content class="survey-content" overflow-scroll="false">
+        <ion-refresher on-refresh="doRefresh()" pulling-text="下拉刷新" refreshing-text="加载中..."></ion-refresher>
         <div class="survey">
-                <ion-list class="list-borderless ub-f1">
-                    <ion-item class=" item-button-right" bindonce ng-repeat="item in homeList[2].survey">
-                        <h4 class="time" bo-text="item.datetime">2016.8.6</h4>
-                        <h3 bo-text="item.title">入职培训需求调研</h3>
-                        <p bo-text="item.desc">您对入职培训有什么需求</p>
-                        <!--<a class="button">已完成</a>-->  <!--已完成的样式-->
-                        <a class="button assertive-bg">未完成</a>
-                    </ion-item>
-                </ion-list>
+            <ion-list class="list-borderless ub-f1">
+                <ion-item class=" item-button-right" bindonce ng-repeat="item in surveyList">
+                    <h4 class="time" bo-text="item.datetime | date:'yyyy-MM-dd'">2016.8.6</h4>
+                    <h3 bo-text="item.title">入职培训需求调研</h3>
+                    <p bo-text="item.desc">您对入职培训有什么需求</p>
+                    <a class="button" ng-show="item.state==1?true:false">已完成</a>
+                    <!--已完成的样式-->
+                    <a class="button assertive-bg" ng-show="item.state==0?true:false" ng-click="openUrl(item.id)">未完成</a>
+                </ion-item>
+            </ion-list>
+            <no-data ng-show="surveyList.length==0?true:false"></no-data>
         </div>
+        <ion-infinite-scroll ng-if="more" icon="ion-loading-c" on-infinite="loadMore()" distance="5%"></ion-infinite-scroll>
     </ion-content>
 </ion-view>
